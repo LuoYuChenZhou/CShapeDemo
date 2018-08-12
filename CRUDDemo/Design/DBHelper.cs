@@ -10,7 +10,7 @@ namespace CRUDDemo.Design
 {
     class DBHelper
     {
-        private static string constring = "server=localhost;database=Diary;uid=tempUser;pwd=temp.123";
+        public static string constring = "server=localhost;database=Diary;uid=tempUser;pwd=temp.123";
 
         /*
          * 因为数据库连接关闭后SqlDataReader对象就失效了，所以ExecuteReader方式的查询写在程序中比较好,配合下面的根据con获取com的方法食用更佳
@@ -134,7 +134,6 @@ namespace CRUDDemo.Design
                 SqlCommand cmd = new SqlCommand(sql, con);
                 return (int)cmd.ExecuteScalar();
             }
-            int i = 9;
         }
 
         /// <summary>
@@ -162,21 +161,6 @@ namespace CRUDDemo.Design
                 da.Fill(ds, "dataTable");
                 return ds.Tables["dataTable"];
             }
-        }
-
-        public static SqlDataReader getDataReader(string sql, SqlParameter[] parameters)
-        {
-            return getDataReader(sql, parameters, CommandType.Text);
-        }
-
-        public static SqlDataReader getDataReader(string sql, SqlParameter[] parameters, CommandType type)
-        {
-            using (SqlConnection con = new SqlConnection(constring))
-            {
-                SqlCommand com = getSqlCom(con, type, sql, parameters);
-                return com.ExecuteReader();
-            }
-            int i = 9;
         }
     }
 }

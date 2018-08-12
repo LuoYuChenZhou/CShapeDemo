@@ -39,11 +39,11 @@ namespace CRUDDemo
 
         private void getUserInfo()
         {
-            string sqlStr = "SELECT  id,name,pwd,real_name AS realName,create_time AS createTime FROM my_user WHERE Id = '" + curUserId + "'";
+            string sqlStr = "SELECT id,username,password,real_name AS realName,create_time AS createTime FROM my_user WHERE Id = '" + curUserId + "'";
             DataTable dt = DBHelper.GetDataTable(sqlStr);
             inputRealName.Text = Convert.ToString(dt.Rows[0]["realName"]);
-            inputName.Text = Convert.ToString(dt.Rows[0]["name"]);
-            inputPwd.Text = Convert.ToString(dt.Rows[0]["pwd"]);
+            inputName.Text = Convert.ToString(dt.Rows[0]["username"]);
+            inputPwd.Text = Convert.ToString(dt.Rows[0]["password"]);
         }
 
         private void UpdateUser(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace CRUDDemo
             }
 
             string newId = System.Guid.NewGuid().ToString("N");
-            sqlStr = "UPDATE my_user SET username =  @username ,password = @password ,real_name =@realName  WHERE id =@id";
+            sqlStr = "UPDATE my_user SET username = @username ,password = @password ,real_name = @realName  WHERE id = @id";
             SqlParameter[] parameters =
             {
                new SqlParameter("username",SqlDbType.NVarChar),

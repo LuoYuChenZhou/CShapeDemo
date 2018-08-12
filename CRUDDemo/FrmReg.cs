@@ -43,7 +43,7 @@ namespace CRUDDemo
             }
 
             string newId = System.Guid.NewGuid().ToString("N");
-            sqlStr = "INSERT INTO my_user(id,username,password,real_name,create_time) VALUES (@newId ,@userName ,@ password ,@realName,GETDATE())";
+            sqlStr = "INSERT INTO my_user(id,username,password,real_name,create_time) VALUES (@newId ,@userName ,@password ,@realName,GETDATE())";
             SqlParameter[] parameters = {
                 new SqlParameter("@newId",SqlDbType.Char),
                 new SqlParameter("@userName",SqlDbType.NVarChar),
@@ -55,7 +55,7 @@ namespace CRUDDemo
             parameters[1].Value = userName;
             parameters[2].Value = password;
             parameters[3].Value = realName;
-            if (DBHelper.ExecuteNonQuery(sqlStr) > 0)
+            if (DBHelper.ExecuteNonQuery(sqlStr, parameters) > 0)
             {
                 MessageBox.Show("注册成功！");
                 inputName.Text = "";

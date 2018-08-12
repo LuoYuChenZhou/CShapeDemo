@@ -61,31 +61,41 @@ namespace CRUDDemo
             parameters[2].Value = curPage * pageSize;
 
 
-            //使用SqlDataReader会持续占用数据库连接，而数据库连接关闭后就不能使用Read方法了，这里使用DateSet
-            //SqlDataReader dr = DBHelper.ExecuteReader(sqlStr, parameters);
-            //while (dr.Read())
-            //{
-            //    ListViewItem lv = new ListViewItem();
-            //    lv.Text = Convert.ToString(dr["realName"]);//设置第一列显示的数据
-            //    //绑定剩余列的数据
-            //    lv.SubItems.Add(Convert.ToString(dr["username"]));
-            //    lv.SubItems.Add(Convert.ToString(dr["password"]));
-            //    lv.SubItems.Add(Convert.ToDateTime(dr["createTime"]).ToString("G"));
-            //    tabUser.Items.Add(lv);
-            //}
-            DataTable dt = DBHelper.GetDataTable(sqlStr, parameters);
-            for (int i = 0; i < dt.Rows.Count; i++)
+
+            //方法1：使用SqlDataReader会持续占用数据库连接，而数据库连接关闭后就不能使用Read方法了，因此不能使用公共类的方法获取数据
+            SqlConnection con = new SqlConnection(DBHelper.constring);
+            SqlCommand com = DBHelper.getSqlCom(con, sqlStr, parameters);
+            SqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
             {
                 ListViewItem lv = new ListViewItem();
-                lv.Text = Convert.ToString(dt.Rows[i]["rowId"]);//设置第一列显示的数据
+                lv.Text = Convert.ToString(dr["rowId"]);//设置第一列显示的数据
                 //绑定剩余列的数据
-                lv.SubItems.Add(Convert.ToString(dt.Rows[i]["realName"]));
-                lv.SubItems.Add(Convert.ToString(dt.Rows[i]["username"]));
-                lv.SubItems.Add(Convert.ToString(dt.Rows[i]["password"]));
-                lv.SubItems.Add(Convert.ToDateTime(dt.Rows[i]["createTime"]).ToString("G"));
-                lv.SubItems.Add(Convert.ToString(dt.Rows[i]["id"]));//表格只有五列，这里把id放在第六列，不会显示出来
+                lv.SubItems.Add(Convert.ToString(dr["realName"]));
+                lv.SubItems.Add(Convert.ToString(dr["username"]));
+                lv.SubItems.Add(Convert.ToString(dr["password"]));
+                lv.SubItems.Add(Convert.ToDateTime(dr["createTime"]).ToString("G"));
+                lv.SubItems.Add(Convert.ToString(dr["id"]));//表格只有五列，这里把id放在第六列，不会显示出来
                 tabUser.Items.Add(lv);
             }
+            con.Close();
+
+
+
+            //方法2: 使用dataset的方式可以脱离数据库连接使用数据
+            //DataTable dt = DBHelper.GetDataTable(sqlStr, parameters);
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    ListViewItem lv = new ListViewItem();
+            //    lv.Text = Convert.ToString(dt.Rows[i]["rowId"]);//设置第一列显示的数据
+            //    //绑定剩余列的数据
+            //    lv.SubItems.Add(Convert.ToString(dt.Rows[i]["realName"]));
+            //    lv.SubItems.Add(Convert.ToString(dt.Rows[i]["username"]));
+            //    lv.SubItems.Add(Convert.ToString(dt.Rows[i]["password"]));
+            //    lv.SubItems.Add(Convert.ToDateTime(dt.Rows[i]["createTime"]).ToString("G"));
+            //    lv.SubItems.Add(Convert.ToString(dt.Rows[i]["id"]));//表格只有五列，这里把id放在第六列，不会显示出来
+            //    tabUser.Items.Add(lv);
+            //}
 
             //控制按钮是否可用
             totalPage = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;

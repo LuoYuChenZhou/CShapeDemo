@@ -56,7 +56,7 @@
             this.tabUser.FullRowSelect = true;
             this.tabUser.Location = new System.Drawing.Point(98, 73);
             this.tabUser.Name = "tabUser";
-            this.tabUser.Size = new System.Drawing.Size(551, 245);
+            this.tabUser.Size = new System.Drawing.Size(582, 245);
             this.tabUser.TabIndex = 0;
             this.tabUser.UseCompatibleStateImageBehavior = false;
             this.tabUser.View = System.Windows.Forms.View.Details;
@@ -103,7 +103,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(413, 36);
+            this.button1.Location = new System.Drawing.Point(444, 34);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 3;
@@ -113,7 +113,7 @@
             // 
             // btnLeftPage
             // 
-            this.btnLeftPage.Location = new System.Drawing.Point(592, 333);
+            this.btnLeftPage.Location = new System.Drawing.Point(622, 330);
             this.btnLeftPage.Name = "btnLeftPage";
             this.btnLeftPage.Size = new System.Drawing.Size(26, 23);
             this.btnLeftPage.TabIndex = 4;
@@ -132,7 +132,7 @@
             // 
             // btnRightPage
             // 
-            this.btnRightPage.Location = new System.Drawing.Point(624, 333);
+            this.btnRightPage.Location = new System.Drawing.Point(654, 330);
             this.btnRightPage.Name = "btnRightPage";
             this.btnRightPage.Size = new System.Drawing.Size(26, 23);
             this.btnRightPage.TabIndex = 6;
@@ -147,7 +147,7 @@
             " 5 条/页",
             "10条/页",
             "20条/页"});
-            this.comboPageSize.Location = new System.Drawing.Point(450, 334);
+            this.comboPageSize.Location = new System.Drawing.Point(480, 331);
             this.comboPageSize.Name = "comboPageSize";
             this.comboPageSize.Size = new System.Drawing.Size(121, 23);
             this.comboPageSize.TabIndex = 7;
@@ -155,7 +155,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(574, 36);
+            this.button2.Location = new System.Drawing.Point(605, 34);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 25);
             this.button2.TabIndex = 8;
@@ -165,7 +165,7 @@
             // 
             // btnUpdateUser
             // 
-            this.btnUpdateUser.Location = new System.Drawing.Point(493, 36);
+            this.btnUpdateUser.Location = new System.Drawing.Point(524, 34);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(75, 25);
             this.btnUpdateUser.TabIndex = 9;
@@ -177,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 404);
+            this.ClientSize = new System.Drawing.Size(811, 404);
             this.Controls.Add(this.btnUpdateUser);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboPageSize);
